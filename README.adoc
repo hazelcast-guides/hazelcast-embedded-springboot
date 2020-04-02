@@ -1,0 +1,34 @@
+////
+This is the base template for Hazelcast integration module guides.
+
+You can clone this repository, work on it and create your guide, and then push to a new repository.
+////
+
+:github-address: [github-repo-address-of-your-guide]
+:templates-url: https://raw.githubusercontent.com/hazelcast-guides/adoc-templates/master
+
+= Title
+
+// Content entered directly below the header but before the first section heading is called the preamble.
+
+include::{templates-url}/link-to-repo.adoc[]
+
+== What You’ll Learn
+
+// Define the problem and tell reader what he/she will learn from this guide.
+
+== Prerequisites
+
+// Define the prerequisites for the guide.
+
+////
+Write the steps in your guide here by making each step a different section
+////
+
+== Summary
+
+// Provide a quick summary
+
+== See Also
+
+// Add some links to resources, such as other related guides.
