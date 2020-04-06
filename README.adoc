@@ -1,4 +1,4 @@
-//:github-address: [github-repo-address-of-your-guide]
+:github-address: https://github.com/hazelcast-guides/getting-started-hazelcast-springboot
 :templates-url: https://raw.githubusercontent.com/hazelcast-guides/adoc-templates/master
 :hazelcast: Hazelcast IMDG
 :framework: Spring Boot
