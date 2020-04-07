@@ -7,8 +7,6 @@
 
 This guide will get you started to use Hazelcast in a Spring Boot application.
 
-include::{templates-url}/what-is-hz.adoc[]
-
 include::{templates-url}/link-to-repo.adoc[]
 
 == What You’ll Learn
