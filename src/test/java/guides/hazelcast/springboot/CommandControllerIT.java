@@ -2,7 +2,6 @@ package guides.hazelcast.springboot;
 
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
-import com.sun.corba.se.spi.ior.ObjectKey;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

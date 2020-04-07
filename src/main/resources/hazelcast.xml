@@ -6,11 +6,4 @@
 
     <cluster-name>hazelcast-cluster</cluster-name>
 
-    <network>
-        <join>
-            <multicast enabled="true"/>
-            <tcp-ip enabled="false"/>
-        </join>
-    </network>
-
 </hazelcast>
