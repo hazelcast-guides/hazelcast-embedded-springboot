@@ -12,12 +12,11 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.http.HttpHeaders.ACCEPT;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CommandControllerIT {
+public class CommandControllerTest {
     @Autowired
     private WebTestClient webTestClient;
 

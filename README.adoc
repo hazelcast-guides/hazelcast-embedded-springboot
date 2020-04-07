@@ -110,6 +110,27 @@ curl "localhost:8081/get?key=key1"
 
 Again, you will see the value in the output since the data is distributed among Hazelcast cluster instances and can be accessed from any of them.
 
+== Testing the Application
+
+You can see `CommandControllerTest` test class under `src/main/test/guides/hazelcast/springboot` folder. There are three tests you can run: `testPutRequest` and `testGetRequest` use `org.springframework.test.web.reactive.server.WebTestClient` to test `/put` and `/get` REST endpoints. `testHazelcastCluster` creates another `HazelcastInstance` and checks if the cluster is formed together with the Hazelcast instance which is initialized by the Spring Boot application.
+
+To run the tests, run the following command:
+
+----
+mvn test
+----
+
+If the tests pass, you’ll see a similar output to the following:
+
+----
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+----
+
 == Summary
 
 In this guide, we first developed a simple microservices application which stores the data in a Hazelcast instance. We started two application instances, and they built a Hazelcast cluster together. Since the data is shared among Hazelcast cluster instances, we can access it from both of the applications.
