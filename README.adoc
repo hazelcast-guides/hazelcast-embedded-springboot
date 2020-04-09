@@ -112,12 +112,10 @@ Again, you will see the value in the output since the data is distributed among 
 
 == Testing the Application
 
-You can see `CommandControllerTest` test class under `src/main/test/guides/hazelcast/springboot` folder. There are three tests you can run: `testPutRequest` and `testGetRequest` use `org.springframework.test.web.reactive.server.WebTestClient` to test `/put` and `/get` REST endpoints. `testHazelcastCluster` creates another `HazelcastInstance` and checks if the cluster is formed together with the Hazelcast instance which is initialized by the Spring Boot application.
-
-To run the tests, run the following command:
+To run the integration tests, run the following command in terminal:
 
 ----
-mvn test
+mvn verify -Ptests
 ----
 
 If the tests pass, you’ll see a similar output to the following:
