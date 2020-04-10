@@ -1,0 +1,87 @@
+:github-address: https://github.com/hazelcast-guides/hazelcast-embedded-springboot
+
+= Deploy to Kubernetes
+
+This guide will help you to deploy your application to Kubernetes environment.
+
+== Prerequisites
+
+- ~15 minutes
+- https://docs.docker.com/install/[Docker]
+- A https://kubernetes.io/[Kubernetes] environment. We will use local `minikube` environment as k8s for demonstration.
+
+== Updating Hazelcast Configuration
+
+Hazelcast has a Kubernetes Discovery Plugin which helps to build clusters in a Kubernetes environment. To enable Kubernetes discovery, update your `hazelcast.yaml` configuration as below:
+
+[source, yaml]
+----
+hazelcast:
+  # other Hazelcast configurations
+  network:
+    join:
+      multicast:
+        enabled: false
+      kubernetes:
+        enabled: true
+----
+
+== Containerizing the Application
+
+Firstly, please assure that Docker is running on your environment.
+
+In order to create the Docker image of the application, we will use the https://github.com/GoogleContainerTools/jib[Jib] tool, and its related Maven plugin. It allows to build containers from Java applications without a Docker file or even changing the pom.xml file. To build the image, run the command below:
+
+----
+mvn clean compile com.google.cloud.tools:jib-maven-plugin:2.1.0:dockerBuild
+----
+
+This command:
+
+- Compiles the application
+- Creates a Docker image
+- And registers it in the local container registry
+
+== Running the Application on Kubernetes
+
+To run the app on Kubernetes, we need a running environment. As stated before, we will be using `minikube` for that. After this point, we assume that your Kubernetes environment is running.
+
+Before deploying our updated application on Kubernetes, one should create a `rbac.yaml` file which can be found {github-address}/deploy/kubernetes/rbac.yaml[here]. This is the role-based access control (RBAC) configuration which is used to give access to the Kubernetes Master API from pods. Hazelcast requires read access to auto-discover other Hazelcast members and form Hazelcast cluster. After creating/downloading the file, apply it using the command below:
+
+----
+kubectl apply -f deploy/kubernetes/rbac.yaml
+----
+
+We will use a deployment configuration which builds a service with two pods. Each of these pods will run one container which is built with our application image. Please see the example deployment configuration file (placed at `deploy/kubernetes/kubernetes.yaml`) below:
+
+[source, yaml]
+----
+include::kubernetes.yaml[]
+----
+
+Now, we deploy the application on Kubernetes by running the command below:
+
+----
+kubectl apply -f deploy/kubernetes/kubernetes.yaml
+----
+
+At this point, we should have a running deployment. It is time to test the running application. But first, the IP address of the running Kubernetes cluster is required to access it. By using minikube, we can get the cluster IP using the command below:
+
+----
+minikube ip
+----
+
+We have the cluster IP address, thus we can test our application:
+
+----
+curl --data "key=key1&value=hazelcast" "[CLUSTER-IP]:31000/put"
+curl "[CLUSTER-IP]:31000/get?key=key1"
+----
+
+== Tearing Down the Deployment
+
+When you no longer need your deployed microservices, you can delete all Kubernetes resources by running the `kubectl delete` command. You might need to wait up to 30 seconds as stateful sets kills pods one at a time.
+
+----
+kubectl delete -f deploy/kubernetes/kubernetes.yaml
+----

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: hazelcast-embedded-springboot-statefulset
+  labels:
+    app: hazelcast-embedded-springboot
+spec:
+  replicas: 2
+  serviceName: hazelcast-embedded-springboot-service
+  selector:
+    matchLabels:
+      app: hazelcast-embedded-springboot
+  template:
+    metadata:
+      labels:
+        app: hazelcast-embedded-springboot
+    spec:
+      containers:
+        - name: hazelcast-embedded-springboot-container
+          image: hazelcast-embedded-springboot:0.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5701
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hazelcast-embedded-springboot-service
+spec:
+  type: NodePort
+  selector:
+    app: hazelcast-embedded-springboot
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 31000
