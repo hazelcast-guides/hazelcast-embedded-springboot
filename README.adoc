@@ -129,6 +129,12 @@ If the tests pass, you’ll see a similar output to the following:
 [INFO] BUILD SUCCESS
 ----
 
+== Deployment Options
+
+See the guide links below for deployment options:
+
+- link:deploy/kubernetes/kubernetes.adoc[Kubernetes]
+
 == Summary
 
 In this guide, we first developed a simple microservices application which stores the data in a Hazelcast instance. We started two application instances, and they built a Hazelcast cluster together. Since the data is shared among Hazelcast cluster instances, we can access it from both of the applications.
