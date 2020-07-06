@@ -81,7 +81,7 @@ Run the application using Maven on a terminal:
 mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8080"
 ----
 
-Then run the application again on another terminal. But this time, note that you need to set a different value for the `server.port`.
+Then rerun the application in another terminal. But this time, note that you need to set a different value for the `server.port`.
 
 ----
 mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8081"
@@ -96,7 +96,7 @@ Members {size:2, ver:2} [
 ]
 ----
 
-Now, you can make calls to application endpoints to put data and get it back. Firstly, run the following command to put the data into Hazelcast distributed map:
+Now, you can issue HTTP requests to put and get data back. Firstly, run the following command to put the data into Hazelcast distributed map:
 
 ----
 curl --data "key=key1&value=hazelcast" "localhost:8080/put"
@@ -131,7 +131,7 @@ If the tests pass, you’ll see a similar output to the following:
 
 == Summary
 
-In this guide, we first developed a simple microservices application which stores the data in a Hazelcast instance. We started two application instances, and they built a Hazelcast cluster together. Since the data is shared among Hazelcast cluster instances, we can access it from both of the applications.
+In this guide, we developed a simple application that stores the data in a Hazelcast instance. We started two application instances, and they formed a Hazelcast cluster. Since the data was shared among Hazelcast cluster instances, we could access it from both application instances.
 
 == See Also
 
