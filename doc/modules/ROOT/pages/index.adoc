@@ -1,5 +1,5 @@
 :github-address: https://github.com/hazelcast-guides/hazelcast-embedded-springboot
-:templates-url: https://raw.githubusercontent.com/hazelcast-guides/adoc-templates/master
+:templates-url: templates:ROOT:page$/
 :hazelcast: Hazelcast IMDG
 :framework: Spring Boot
 
