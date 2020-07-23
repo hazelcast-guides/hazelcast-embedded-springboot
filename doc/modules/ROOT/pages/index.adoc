@@ -135,6 +135,7 @@ In this guide, we developed a simple application that stores the data in a Hazel
 
 == See Also
 
-- https://github.com/hazelcast-guides/caching-springboot-microservices-on-kubernetes[Caching SpringBoot Microservices with Hazelcast in Kubernetes]
-- https://github.com/hazelcast-guides/caching-micronaut-microservices-on-kubernetes[Caching Micronaut microservices on Kubernetes using Hazelcast]
-- https://github.com/hazelcast-guides/hazelcast-quarkus[Hazelcast and Quarkus]
+- xref:hazelcast-embedded-kubernetes:ROOT:index.adoc[Hazelcast with SpringBoot in Kubernetes]
+- xref:hazelcast-embedded-micronaut:ROOT:index.adoc[Hazelcast in Micronaut]
+- xref:hazelcast-quarkus:ROOT:index.adoc[Hazelcast Client for Quarkus]
+
