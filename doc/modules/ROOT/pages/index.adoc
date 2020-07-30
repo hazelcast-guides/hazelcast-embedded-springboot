@@ -135,7 +135,7 @@ In this guide, we developed a simple application that stores the data in a Hazel
 
 == See Also
 
-- xref:hazelcast-embedded-kubernetes:ROOT:index.adoc[Hazelcast with SpringBoot in Kubernetes]
+- xref:kubernetes-springboot-embedded:ROOT:index.adoc[Hazelcast with SpringBoot in Kubernetes]
 - xref:caching-micronaut:ROOT:index.adoc[Hazelcast in Micronaut]
 - xref:hazelcast-client-quarkus:ROOT:index.adoc[Hazelcast Client for Quarkus]
 
