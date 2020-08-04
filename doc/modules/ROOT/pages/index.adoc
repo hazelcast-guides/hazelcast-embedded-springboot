@@ -87,7 +87,7 @@ Then rerun the application on another terminal. Note that you need to set a diff
 mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8081"
 ----
 
-After both application instances are initialized, you should see the Hazelcast cluster formation in the output, similar to below:
+After both application instances are initialized, you should see the Hazelcast cluster formation in the output similar to below:
 
 ----
 Members {size:2, ver:2} [
@@ -131,7 +131,7 @@ If the tests pass, you’ll see a similar output to the following:
 
 == Summary
 
-In this guide, we developed a simple Spring Boot application that stores the data in a Hazelcast instance. We started two application instances, and they formed a Hazelcast cluster. We pushed data to some Hazelcast member, and since the data was shared among Hazelcast cluster instances, we could access it from both application instances.
+In this guide, we developed a simple Spring Boot application that stores the data in a Hazelcast instance. We started two application instances, and they formed a Hazelcast cluster. We pushed data to an application instance, and since the data was shared among Hazelcast cluster instances, we could access it from both application instances.
 
 == See Also
 
