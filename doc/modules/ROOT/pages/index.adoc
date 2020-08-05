@@ -24,7 +24,7 @@ include::{templates-url}/microservices/application-structure.adoc[]
 
 == Using Hazelcast in the Application
 
-If Hazelcast is on the classpath and a suitable configuration is found, Spring Boot auto-configures a HazelcastInstance that you can inject in your application. In the `pom.xml` file, you can see Hazelcast is added as a dependency:
+If Hazelcast is on the classpath and a suitable configuration is found, Spring Boot auto-configures a `HazelcastInstance` that you can inject into your application. In the `pom.xml` file, you can see Hazelcast is added as a dependency:
 
 [source,xml]
 ----
@@ -35,7 +35,7 @@ If Hazelcast is on the classpath and a suitable configuration is found, Spring B
 </dependency>
 ----
 
-Hazelcast configuration (`hazelcast.yaml`) is placed under `src/main/resources/` folder. Now, we only need to auto-wire `HazelcastInstance` bean in `CommandController` and use it to access to Hazelcast data structures:
+Hazelcast configuration (`hazelcast.yaml`) is placed under `src/main/resources/` folder. We only need to auto-wire `HazelcastInstance` bean in `CommandController` and use it to access to Hazelcast data structures:
 
 [source, java]
 ----
@@ -81,13 +81,13 @@ Run the application using Maven on a terminal:
 mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8080"
 ----
 
-Then rerun the application in another terminal. But this time, note that you need to set a different value for the `server.port`.
+Then rerun the application on another terminal. Note that you need to set a different value for the `server.port`.
 
 ----
 mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8081"
 ----
 
-After both application instances initialized, you should see the Hazelcast cluster formation in the output similar below:
+After both application instances are initialized, you should see the Hazelcast cluster formation in the output similar to below:
 
 ----
 Members {size:2, ver:2} [
@@ -96,7 +96,7 @@ Members {size:2, ver:2} [
 ]
 ----
 
-Now, you can issue HTTP requests to put and get data back. Firstly, run the following command to put the data into Hazelcast distributed map:
+Now, you can issue HTTP requests to put and get data back. Run the following command to put the data into Hazelcast distributed map:
 
 ----
 curl --data "key=key1&value=hazelcast" "localhost:8080/put"
@@ -112,7 +112,7 @@ Again, you will see the value in the output since the data is distributed among 
 
 == Testing the Application
 
-To run the integration tests, run the following command in terminal:
+To run the integration tests, run the following command in terminal. But before, make sure to kill the running application instances.
 
 ----
 mvn verify -Ptests
@@ -131,11 +131,11 @@ If the tests pass, you’ll see a similar output to the following:
 
 == Summary
 
-In this guide, we developed a simple application that stores the data in a Hazelcast instance. We started two application instances, and they formed a Hazelcast cluster. Since the data was shared among Hazelcast cluster instances, we could access it from both application instances.
+In this guide, we developed a simple Spring Boot application that stores the data in a Hazelcast instance. We started two application instances, and they formed a Hazelcast cluster. We pushed data to an application instance, and since the data was shared among Hazelcast cluster instances, we could access it from both application instances.
 
 == See Also
 
-- xref:kubernetes-springboot-embedded:ROOT:index.adoc[Hazelcast with SpringBoot in Kubernetes]
 - xref:caching-micronaut:ROOT:index.adoc[Hazelcast in Micronaut]
+- xref:hazelcast-embedded-microprofile:ROOT:index.adoc[Hazelcast Embedded Microprofile]
 - xref:hazelcast-client-quarkus:ROOT:index.adoc[Hazelcast Client for Quarkus]
 
