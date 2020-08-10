@@ -16,6 +16,7 @@ include::{templates-url}/microservices/what-you-will-learn.adoc[]
 == Prerequisites
 
 - ~15 minutes
+
 include::{templates-url}/microservices/prerequisites.adoc[]
 
 == The Spring Boot Application Structure
