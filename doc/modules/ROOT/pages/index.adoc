@@ -139,4 +139,3 @@ In this guide, we developed a simple Spring Boot application that stores the dat
 - xref:caching-micronaut:ROOT:index.adoc[Hazelcast in Micronaut]
 - xref:hazelcast-embedded-microprofile:ROOT:index.adoc[Hazelcast Embedded Microprofile]
 - xref:hazelcast-client-quarkus:ROOT:index.adoc[Hazelcast Client for Quarkus]
-
