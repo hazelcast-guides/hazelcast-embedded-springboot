@@ -32,7 +32,6 @@ If Hazelcast is on the classpath and a suitable configuration is found, Spring B
 <dependency>
     <groupId>com.hazelcast</groupId>
     <artifactId>hazelcast-all</artifactId>
-    <version>4.0.2</version>
 </dependency>
 ----
 
