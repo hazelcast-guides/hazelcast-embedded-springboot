@@ -31,6 +31,7 @@ jobs:
           git config --global user.email 'devops@hazelcast.com'
           export GUIDE_REPO=$(cut -d/ -f2 <<<"${GITHUB_REPOSITORY}")
           export COMMIT_ID=$(git rev-parse --short "$GITHUB_SHA")
-          git commit -am "${GUIDE_REPO}-${COMMIT_ID} guide update"
+          git add docs
+          git commit -m "${GUIDE_REPO}-${COMMIT_ID} guide update"
       - name: Push artifacts to guides-site repo
         run: git push
