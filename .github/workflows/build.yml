@@ -2,10 +2,10 @@ name: build
 on:
   push:
     paths-ignore:
-      - 'doc/**'
+      - 'modules/**'
   pull_request:
     paths-ignore:
-      - 'doc/**'
+      - 'modules/**'
 
 jobs:
   build:
