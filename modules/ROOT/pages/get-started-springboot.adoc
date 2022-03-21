@@ -25,17 +25,14 @@ include::{templates-url}/microservices/application-structure.adoc[]
 
 If Hazelcast is on the classpath and a suitable configuration is found, Spring Boot auto-configures a `HazelcastInstance` that you can inject into your application. In the `pom.xml` file, you can see Hazelcast is added as a dependency:
 
-[source,xml]
+[source,xml,indent=0]
 ----
-<dependency>
-    <groupId>com.hazelcast</groupId>
-    <artifactId>hazelcast-all</artifactId>
-</dependency>
+include::ROOT:example$pom.xml[tag=hazelcast-dep]
 ----
 
 Hazelcast configuration (`hazelcast.yaml`) is placed in the `src/main/resources/` directory. You only need to auto-wire the `HazelcastInstance` bean in the `CommandController` and use it to access to Hazelcast data structures:
 
-[source,java]
+[source,java,indent=0]
 ----
 include::ROOT:example$src/main/java/guides/hazelcast/springboot/CommandController.java[]
 ----
