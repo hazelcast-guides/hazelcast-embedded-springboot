@@ -27,14 +27,14 @@ If Hazelcast is on the classpath and a suitable configuration is found, Spring B
 
 [source,xml,indent=0]
 ----
-include::ROOT:example$pom.xml[tag=hazelcast-dep]
+include::ROOT:example$hazelcast-embedded-springboot/pom.xml[tag=hazelcast-dep]
 ----
 
 Hazelcast configuration (`hazelcast.yaml`) is placed in the `src/main/resources/` directory. You only need to auto-wire the `HazelcastInstance` bean in the `CommandController` and use it to access to Hazelcast data structures:
 
 [source,java,indent=0]
 ----
-include::ROOT:example$src/main/java/guides/hazelcast/springboot/CommandController.java[]
+include::ROOT:example$hazelcast-embedded-springboot/src/main/java/guides/hazelcast/springboot/CommandController.java[]
 ----
 
 == Running the Sample Application
