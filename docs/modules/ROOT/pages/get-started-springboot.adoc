@@ -1,4 +1,4 @@
-= Getting Started with Hazelcast using Spring Boot
+= Get Started with Hazelcast using Spring Boot
 :templates-url: templates:ROOT:page$/
 :page-layout: tutorial
 :page-product: platform
@@ -13,7 +13,7 @@
 
 {description}
 
-== Prerequisites
+== Before you Begin
 
 include::{templates-url}/microservices/prerequisites.adoc[]
 
@@ -21,7 +21,7 @@ include::{templates-url}/microservices/prerequisites.adoc[]
 
 include::{templates-url}/microservices/application-structure.adoc[]
 
-== Using Hazelcast in the Application
+== Use Hazelcast in the Application
 
 If Hazelcast is on the classpath and a suitable configuration is found, Spring Boot auto-configures a `HazelcastInstance` that you can inject into your application. In the `pom.xml` file, you can see Hazelcast is added as a dependency:
 
@@ -37,7 +37,7 @@ Hazelcast configuration (`hazelcast.yaml`) is placed in the `src/main/resources/
 include::ROOT:example$hazelcast-embedded-springboot/src/main/java/guides/hazelcast/springboot/CommandController.java[]
 ----
 
-== Running the Sample Application
+== Run the Sample Application
 
 Run the application using Maven in a terminal:
 
@@ -76,7 +76,7 @@ curl "localhost:8081/get?key=key1"
 
 Again, you will see the value in the output since the data is distributed among Hazelcast cluster instances and can be accessed from any of them.
 
-== Testing the Application
+== Test the Application
 
 To run the integration tests, run the following command in terminal. But before, make sure to kill the running application instances.
 
