@@ -1,7 +1,7 @@
 = Get Started with Hazelcast using Spring Boot
 :templates-url: templates:ROOT:page$/
 :page-layout: tutorial
-:page-product: platform
+:page-product: imdg
 :page-categories: Caching, Getting Started, Spring Boot, Microservices
 :page-lang: java
 :page-edition: 
