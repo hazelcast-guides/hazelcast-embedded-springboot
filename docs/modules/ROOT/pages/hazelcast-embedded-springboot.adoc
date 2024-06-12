@@ -42,7 +42,7 @@ include::ROOT:example$hazelcast-embedded-springboot/src/main/java/guides/hazelca
 Run the application using Maven in a terminal:
 
 ----
-mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8080"
+mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8080 --spring.profiles.active=local"
 ----
 
 Then, rerun the application in another terminal.
@@ -50,7 +50,7 @@ Then, rerun the application in another terminal.
 NOTE: Notice the different value for the `server.port` argument.
 
 ----
-mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8081"
+mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8081 --spring.profiles.active=local"
 ----
 
 After both application instances are initialized, you should see that the Hazelcast cluster is formed:

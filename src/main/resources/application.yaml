@@ -1,0 +1,25 @@
+logging:
+  level:
+    com.hazelcast: TRACE
+    org.springframework: INFO
+    root: ERROR
+
+spring:
+  hazelcast:
+    config: classpath:hazelcast.yaml
+
+--- # profile: local
+spring:
+  config:
+    activate:
+      on-profile: local
+  hazelcast:
+    config: classpath:hazelcast-local.yaml
+
+--- # profile: tests
+spring:
+  config:
+    activate:
+      on-profile: tests
+  hazelcast:
+    config: classpath:hazelcast-local.yaml
