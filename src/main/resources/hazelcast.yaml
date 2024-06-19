@@ -1,2 +1,12 @@
 hazelcast:
-  cluster-name: hazelcast-cluster
+  network:
+    interfaces:
+      enabled: true
+      interfaces:
+        - 10.0.*.*
+    join:
+      multicast:
+        enabled: false
+      aws:
+        enabled: true
+        hz-port: 5701
