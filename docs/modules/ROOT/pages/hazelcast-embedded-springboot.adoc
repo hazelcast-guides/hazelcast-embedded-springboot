@@ -36,12 +36,16 @@ Hazelcast configuration (`hazelcast.yaml`) is placed in the `src/main/resources/
 include::ROOT:example$hazelcast-embedded-springboot/src/main/java/guides/hazelcast/springboot/HazelcastApplication.java[tag=imap-bean]
 ----
 
+Bean will have name "map" and can be autowired by `IMap` type (if it's the only IMap added as bean).
+
 Now you can autowire the `IMap` bean in the `CommandController` and use it to access the Hazelcast structure:
 
 [source,java,indent=0]
 ----
 include::ROOT:example$hazelcast-embedded-springboot/src/main/java/guides/hazelcast/springboot/CommandController.java[]
 ----
+
+Please notice, that we've used `@Qualifier("map")` - it's strictly speaking optional, but once you add more IMaps, you will need to distinguish which map you want to autowire.
 
 == Run the Sample Application
 
@@ -55,6 +59,8 @@ mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8080 -Djava.ne
 Then, rerun the application in another terminal.
 
 NOTE: Notice the different value for the `server.port` argument.
+
+NOTE: We've used `-Djava.net.preferIPv4Stack=true`, because on some platforms there are problems with multicast on IPv6. Adding this option ensures smooth run when learning.
 
 [source,bash]
 ----
