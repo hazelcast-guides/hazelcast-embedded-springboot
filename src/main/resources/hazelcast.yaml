@@ -6,4 +6,3 @@ hazelcast:
     join:
       multicast:
         enabled: true
-        loopbackModeEnabled: true
