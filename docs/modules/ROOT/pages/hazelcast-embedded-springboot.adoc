@@ -47,40 +47,45 @@ include::ROOT:example$hazelcast-embedded-springboot/src/main/java/guides/hazelca
 
 Run the application using Maven in a terminal:
 
+[source,bash]
 ----
-mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8080"
+mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8080 -Djava.net.preferIPv4Stack=true"
 ----
 
 Then, rerun the application in another terminal.
 
 NOTE: Notice the different value for the `server.port` argument.
 
+[source,bash]
 ----
-mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8081"
+mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dserver.port=8081 -Djava.net.preferIPv4Stack=true"
 ----
 
 After both application instances are initialized, you should see that the Hazelcast cluster is formed:
 
-```bash
+[source,bash]
+----
 Members {size:2, ver:2} [
 	Member [192.168.1.64]:5701 - 520aec3f-58a6-4fcb-a3c7-498dcf37d8ff
 	Member [192.168.1.64]:5702 - 5c03e467-d457-4847-b49a-745a335db557 this
 ]
-```
+----
 
 Now, you can issue HTTP requests to put and get data back. Run the following command to put the data into a Hazelcast distributed map:
 
-```bash
+[source,bash]
+----
 curl --data "key=key1&value=hazelcast" "localhost:8080/put"
-```
+----
 
 You will see the value in the output. Then run the command below to get the data back. Please note that the call is made to the other application instance:
 
-```bash
+[source,bash]
+----
 curl "localhost:8081/get?key=key1"
-```
+----
 
-Again, you will see the value in the output since the data is distributed among Hazelcast cluster instances and can be accessed from any of them.
+Again, you will see the value in the output (`{"value":"hazelcast"}`), because the data is distributed among Hazelcast cluster instances and can be accessed from any of them.
 
 == Test the Application
 
