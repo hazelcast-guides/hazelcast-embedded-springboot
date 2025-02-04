@@ -30,7 +30,13 @@ If Hazelcast is on the classpath and a suitable configuration is found, Spring B
 include::ROOT:example$hazelcast-embedded-springboot/pom.xml[tag=hazelcast-dep]
 ----
 
-Hazelcast configuration (`hazelcast.yaml`) is placed in the `src/main/resources/` directory. You only need to auto-wire the `HazelcastInstance` bean in the `CommandController` and use it to access to Hazelcast data structures:
+Hazelcast configuration (`hazelcast.yaml`) is placed in the `src/main/resources/` directory. You only need to define `map` bean, if you want to autowire the IMap instance:
+[source,java,indent=0]
+----
+include::ROOT:example$hazelcast-embedded-springboot/src/main/java/guides/hazelcast/springboot/HazelcastApplication.java[tag=imap-bean]
+----
+
+Now you can autowire the `IMap` bean in the `CommandController` and use it to access the Hazelcast structure:
 
 [source,java,indent=0]
 ----
