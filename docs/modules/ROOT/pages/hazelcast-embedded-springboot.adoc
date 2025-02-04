@@ -92,7 +92,7 @@ Again, you will see the value in the output (`{"value":"hazelcast"}`), because t
 To run the integration tests, run the following command in terminal. But before, make sure to kill the running application instances.
 
 ----
-mvn verify -Ptests
+mvn verify
 ----
 
 If the tests pass, you’ll see a similar output to the following:
