@@ -1,5 +1,6 @@
 package guides.hazelcast.springboot;
 
+import com.hazelcast.config.Config;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.time.Duration;
+
+import static org.awaitility.Awaitility.await;
 import static org.springframework.http.HttpHeaders.ACCEPT;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -26,7 +29,11 @@ public class CommandControllerIT {
     @Test
     public void testPutRequest(){
         //when
-        WebTestClient.ResponseSpec responseSpec = makePostRequest("/put?key={key}&value={value}", "key1", "value1");
+        WebTestClient.ResponseSpec responseSpec = webTestClient
+                .post()
+                .uri("/put?key={key}&value={value}", "key1", "value1")
+                .header(ACCEPT, APPLICATION_JSON_VALUE)
+                .exchange();
 
         //then
         responseSpec.expectStatus()
@@ -40,7 +47,11 @@ public class CommandControllerIT {
     @Test
     public void testGetRequest(){
         //given
-        makePostRequest("/put?key={key}&value={value}", "key1", "value1");
+        webTestClient
+                .post()
+                .uri("/put?key={key}&value={value}", "key1", "value1")
+                .header(ACCEPT, APPLICATION_JSON_VALUE)
+                .exchange();
 
         //when
         WebTestClient.ResponseSpec responseSpec = webTestClient
@@ -58,20 +69,21 @@ public class CommandControllerIT {
                 .jsonPath("$.value").isEqualTo("value1");
     }
 
-    private WebTestClient.ResponseSpec makePostRequest(String uri, Object... parameters) {
-        return webTestClient
-                .post()
-                .uri(uri, parameters)
-                .header(ACCEPT, APPLICATION_JSON_VALUE)
-                .exchange();
-    }
-
     @Test
-    public void testHazelcastCluster(){
+    public void testHazelcastCluster() {
+        Config config = Config.load();
+        config.setProperty("hazelcast.logging.type", "log4j2");
+
         //given
-        Hazelcast.newHazelcastInstance();
+        HazelcastInstance hz = Hazelcast.newHazelcastInstance();
 
         //then
-        assertEquals(2, hazelcastInstance.getCluster().getMembers().size());
+        try {
+            await()
+                    .atMost(Duration.ofMinutes(2))
+                    .until(() -> hazelcastInstance.getCluster().getMembers().size() == 2);
+        } finally {
+            hz.shutdown();
+        }
     }
 }

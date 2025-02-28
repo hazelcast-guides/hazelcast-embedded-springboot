@@ -1,5 +1,7 @@
 hazelcast:
   cluster-name: hazelcast-cluster
+  properties:
+    hazelcast.logging.type: log4j2
   network:
     join:
       multicast:
