@@ -13,6 +13,8 @@
 
 {description}
 
+The complete code for this tutorial is in the link:https://github.com/hazelcast-guides/hazelcast-embedded-springboot[hazelcast-guides/hazelcast-embedded-springboot] repository on GitHub.
+
 == Before you Begin
 
 include::{templates-url}/microservices/prerequisites.adoc[]
@@ -23,7 +25,7 @@ include::{templates-url}/microservices/application-structure.adoc[]
 
 == Use Hazelcast in the Application
 
-If Hazelcast is on the classpath and a suitable configuration is found, Spring Boot auto-configures a `HazelcastInstance` that you can inject into your application. In the `pom.xml` file, you can see Hazelcast is added as a dependency:
+If `spring-boot-starter-hazelcast` is on the classpath and a suitable configuration is found, Spring Boot auto-configures a `HazelcastInstance` that you can inject into your application. In the `pom.xml` file, you can see the starter is added as a dependency:
 
 [source,xml,indent=0]
 ----
