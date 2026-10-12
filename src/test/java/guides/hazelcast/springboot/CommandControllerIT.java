@@ -1,12 +1,12 @@
 package guides.hazelcast.springboot;
 
-import com.hazelcast.config.Config;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.webtestclient.autoconfigure.AutoConfigureWebTestClient;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
@@ -19,6 +19,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureWebTestClient
 public class CommandControllerIT {
     @Autowired
     private WebTestClient webTestClient;
@@ -71,9 +72,6 @@ public class CommandControllerIT {
 
     @Test
     public void testHazelcastCluster() {
-        Config config = Config.load();
-        config.setProperty("hazelcast.logging.type", "log4j2");
-
         //given
         HazelcastInstance hz = Hazelcast.newHazelcastInstance();
 
